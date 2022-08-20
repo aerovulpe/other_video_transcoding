@@ -1831,15 +1831,15 @@ Requires `ffprobe`, `ffmpeg` and `mkvpropedit`.
         colorspace      ||= 'bt2020nc'
       end
 
-      if width > 1920 or height > 1080
+      if width * height >= 3840 * 2160
         level = '5.1'
         bitrate = @target_2160p
         max_bitrate = @hevc ? 25000 : 135000 # Level 5 HEVC Main 10 or H.264 Main
-      elsif width > 1280 or height > 720
+      elsif width * height >= 1920 * 1080
         level = '4'
         bitrate = @target_1080p
         max_bitrate = @hevc ? 12000 : 20000 # Level 4
-      elsif width > 720 or height > 576
+      elsif width * height >= 1280 * 720
         level = '3.1'
         bitrate = @target_720p
         max_bitrate = @hevc ? 10000 : 14000 # Level 3.1
