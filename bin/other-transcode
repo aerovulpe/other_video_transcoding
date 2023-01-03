@@ -1694,6 +1694,12 @@ Requires `ffprobe`, `ffmpeg` and `mkvpropedit`.
         max_width   = [@max_width,  1920].min
         max_height  = [@max_height, 1080].min
       end
+      
+      if height > width
+         temp_max_width = max_height
+         max_height = max_width
+         max_width = temp_max_width
+      end
 
       if video['sample_aspect_ratio'] = '1:1' and (width > max_width or height > max_height)
         scale = [(max_width.to_f / width), (max_height.to_f / height)].min
