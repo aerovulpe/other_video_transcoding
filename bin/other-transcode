@@ -1694,7 +1694,7 @@ Requires `ffprobe`, `ffmpeg` and `mkvpropedit`.
         max_width   = [@max_width,  1920].min
         max_height  = [@max_height, 1080].min
       end
-      
+
       if height > width
          temp_max_width = max_height
          max_height = max_width
@@ -1826,9 +1826,11 @@ Requires `ffprobe`, `ffmpeg` and `mkvpropedit`.
       end
 
       color_primaries = video['color_primaries']
+      color_primaries = 'bt709'   if color_primaries == 'reserved'
       color_trc       = video['color_transfer']
       color_trc       = 'gamma22' if color_trc == 'bt470m'
       color_trc       = 'gamma28' if color_trc == 'bt470bg'
+      color_trc       = 'bt709'   if color_trc == 'reserved'
       colorspace      = video['color_space']
 
       if (video.fetch('pix_fmt', 'yuv420p') == 'yuv420p10le') and ten_bit
