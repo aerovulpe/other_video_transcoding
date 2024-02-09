@@ -1832,6 +1832,7 @@ Requires `ffprobe`, `ffmpeg` and `mkvpropedit`.
       color_trc       = 'gamma28' if color_trc == 'bt470bg'
       color_trc       = 'bt709'   if color_trc == 'reserved'
       colorspace      = video['color_space']
+      colorspace      = 'bt709'   if colorspace == 'gbr'
 
       if (video.fetch('pix_fmt', 'yuv420p') == 'yuv420p10le') and ten_bit
         color_primaries ||= 'bt2020'
